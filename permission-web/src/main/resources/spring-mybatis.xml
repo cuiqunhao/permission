@@ -54,5 +54,12 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	
+	<plugins>
+        <plugin interceptor="com.yihaomen.util.PagePlugin">
+            <property name="dialect" value="mysql" />
+            <property name="pageSqlId" value=".*ListPage.*" />
+        </plugin>
+    </plugins>
 
 </beans>

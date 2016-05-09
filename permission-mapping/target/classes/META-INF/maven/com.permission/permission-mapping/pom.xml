@@ -16,9 +16,14 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
-  <dependency>
+   <dependency>
       <groupId>com.permission</groupId>
       <artifactId>permission-pojo</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.permission</groupId>
+      <artifactId>permission-common</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
