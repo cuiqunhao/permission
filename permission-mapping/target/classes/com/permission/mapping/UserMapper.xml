@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.permission.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.permission.pojo.User" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Account" property="account" jdbcType="VARCHAR" />
+    <result column="Password" property="password" jdbcType="VARCHAR" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="Sex" property="sex" jdbcType="INTEGER" />
+    <result column="Status" property="status" jdbcType="INTEGER" />
+    <result column="Type" property="type" jdbcType="INTEGER" />
+    <result column="BizCode" property="bizcode" jdbcType="VARCHAR" />
+    <result column="CreateTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="CreateId" property="createid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Account, Password, Name, Sex, Status, Type, BizCode, CreateTime, CreateId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.permission.pojo.User" >
+    insert into user (Id, Account, Password, 
+      Name, Sex, Status, 
+      Type, BizCode, CreateTime, 
+      CreateId)
+    values (#{id,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{bizcode,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{createid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.permission.pojo.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="account != null" >
+        Account,
+      </if>
+      <if test="password != null" >
+        Password,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="sex != null" >
+        Sex,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="type != null" >
+        Type,
+      </if>
+      <if test="bizcode != null" >
+        BizCode,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="createid != null" >
+        CreateId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="bizcode != null" >
+        #{bizcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createid != null" >
+        #{createid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.permission.pojo.User" >
+    update user
+    <set >
+      <if test="account != null" >
+        Account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        Password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        Sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        Status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        Type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="bizcode != null" >
+        BizCode = #{bizcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createid != null" >
+        CreateId = #{createid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.permission.pojo.User" >
+    update user
+    set Account = #{account,jdbcType=VARCHAR},
+      Password = #{password,jdbcType=VARCHAR},
+      Name = #{name,jdbcType=VARCHAR},
+      Sex = #{sex,jdbcType=INTEGER},
+      Status = #{status,jdbcType=INTEGER},
+      Type = #{type,jdbcType=INTEGER},
+      BizCode = #{bizcode,jdbcType=VARCHAR},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      CreateId = #{createid,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

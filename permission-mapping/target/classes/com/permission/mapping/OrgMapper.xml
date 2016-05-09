@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.permission.dao.OrgMapper" >
+  <resultMap id="BaseResultMap" type="com.permission.pojo.Org" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="CascadeId" property="cascadeid" jdbcType="VARCHAR" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="HotKey" property="hotkey" jdbcType="VARCHAR" />
+    <result column="ParentId" property="parentid" jdbcType="INTEGER" />
+    <result column="ParentName" property="parentname" jdbcType="VARCHAR" />
+    <result column="IsLeaf" property="isleaf" jdbcType="BIT" />
+    <result column="IsAutoExpand" property="isautoexpand" jdbcType="BIT" />
+    <result column="IconName" property="iconname" jdbcType="VARCHAR" />
+    <result column="Status" property="status" jdbcType="INTEGER" />
+    <result column="Type" property="type" jdbcType="INTEGER" />
+    <result column="BizCode" property="bizcode" jdbcType="VARCHAR" />
+    <result column="CreateTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="CreateId" property="createid" jdbcType="INTEGER" />
+    <result column="SortNo" property="sortno" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.permission.pojo.Org" extends="BaseResultMap" >
+    <result column="CustomCode" property="customcode" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, CascadeId, Name, HotKey, ParentId, ParentName, IsLeaf, IsAutoExpand, IconName, 
+    Status, Type, BizCode, CreateTime, CreateId, SortNo
+  </sql>
+  <sql id="Blob_Column_List" >
+    CustomCode
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from org
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from org
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.permission.pojo.Org" >
+    insert into org (Id, CascadeId, Name, 
+      HotKey, ParentId, ParentName, 
+      IsLeaf, IsAutoExpand, IconName, 
+      Status, Type, BizCode, 
+      CreateTime, CreateId, SortNo, 
+      CustomCode)
+    values (#{id,jdbcType=INTEGER}, #{cascadeid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{hotkey,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, #{parentname,jdbcType=VARCHAR}, 
+      #{isleaf,jdbcType=BIT}, #{isautoexpand,jdbcType=BIT}, #{iconname,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{bizcode,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{createid,jdbcType=INTEGER}, #{sortno,jdbcType=INTEGER}, 
+      #{customcode,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.permission.pojo.Org" >
+    insert into org
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="cascadeid != null" >
+        CascadeId,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="hotkey != null" >
+        HotKey,
+      </if>
+      <if test="parentid != null" >
+        ParentId,
+      </if>
+      <if test="parentname != null" >
+        ParentName,
+      </if>
+      <if test="isleaf != null" >
+        IsLeaf,
+      </if>
+      <if test="isautoexpand != null" >
+        IsAutoExpand,
+      </if>
+      <if test="iconname != null" >
+        IconName,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="type != null" >
+        Type,
+      </if>
+      <if test="bizcode != null" >
+        BizCode,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="createid != null" >
+        CreateId,
+      </if>
+      <if test="sortno != null" >
+        SortNo,
+      </if>
+      <if test="customcode != null" >
+        CustomCode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cascadeid != null" >
+        #{cascadeid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="hotkey != null" >
+        #{hotkey,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="parentname != null" >
+        #{parentname,jdbcType=VARCHAR},
+      </if>
+      <if test="isleaf != null" >
+        #{isleaf,jdbcType=BIT},
+      </if>
+      <if test="isautoexpand != null" >
+        #{isautoexpand,jdbcType=BIT},
+      </if>
+      <if test="iconname != null" >
+        #{iconname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="bizcode != null" >
+        #{bizcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createid != null" >
+        #{createid,jdbcType=INTEGER},
+      </if>
+      <if test="sortno != null" >
+        #{sortno,jdbcType=INTEGER},
+      </if>
+      <if test="customcode != null" >
+        #{customcode,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.permission.pojo.Org" >
+    update org
+    <set >
+      <if test="cascadeid != null" >
+        CascadeId = #{cascadeid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="hotkey != null" >
+        HotKey = #{hotkey,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        ParentId = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="parentname != null" >
+        ParentName = #{parentname,jdbcType=VARCHAR},
+      </if>
+      <if test="isleaf != null" >
+        IsLeaf = #{isleaf,jdbcType=BIT},
+      </if>
+      <if test="isautoexpand != null" >
+        IsAutoExpand = #{isautoexpand,jdbcType=BIT},
+      </if>
+      <if test="iconname != null" >
+        IconName = #{iconname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        Status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        Type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="bizcode != null" >
+        BizCode = #{bizcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createid != null" >
+        CreateId = #{createid,jdbcType=INTEGER},
+      </if>
+      <if test="sortno != null" >
+        SortNo = #{sortno,jdbcType=INTEGER},
+      </if>
+      <if test="customcode != null" >
+        CustomCode = #{customcode,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.permission.pojo.Org" >
+    update org
+    set CascadeId = #{cascadeid,jdbcType=VARCHAR},
+      Name = #{name,jdbcType=VARCHAR},
+      HotKey = #{hotkey,jdbcType=VARCHAR},
+      ParentId = #{parentid,jdbcType=INTEGER},
+      ParentName = #{parentname,jdbcType=VARCHAR},
+      IsLeaf = #{isleaf,jdbcType=BIT},
+      IsAutoExpand = #{isautoexpand,jdbcType=BIT},
+      IconName = #{iconname,jdbcType=VARCHAR},
+      Status = #{status,jdbcType=INTEGER},
+      Type = #{type,jdbcType=INTEGER},
+      BizCode = #{bizcode,jdbcType=VARCHAR},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      CreateId = #{createid,jdbcType=INTEGER},
+      SortNo = #{sortno,jdbcType=INTEGER},
+      CustomCode = #{customcode,jdbcType=LONGVARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.permission.pojo.Org" >
+    update org
+    set CascadeId = #{cascadeid,jdbcType=VARCHAR},
+      Name = #{name,jdbcType=VARCHAR},
+      HotKey = #{hotkey,jdbcType=VARCHAR},
+      ParentId = #{parentid,jdbcType=INTEGER},
+      ParentName = #{parentname,jdbcType=VARCHAR},
+      IsLeaf = #{isleaf,jdbcType=BIT},
+      IsAutoExpand = #{isautoexpand,jdbcType=BIT},
+      IconName = #{iconname,jdbcType=VARCHAR},
+      Status = #{status,jdbcType=INTEGER},
+      Type = #{type,jdbcType=INTEGER},
+      BizCode = #{bizcode,jdbcType=VARCHAR},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      CreateId = #{createid,jdbcType=INTEGER},
+      SortNo = #{sortno,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

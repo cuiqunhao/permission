@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.permission.dao.RelevanceMapper" >
+  <resultMap id="BaseResultMap" type="com.permission.pojo.Relevance" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="FirstId" property="firstid" jdbcType="INTEGER" />
+    <result column="SecondId" property="secondid" jdbcType="INTEGER" />
+    <result column="Description" property="description" jdbcType="VARCHAR" />
+    <result column="Key" property="key" jdbcType="VARCHAR" />
+    <result column="Status" property="status" jdbcType="INTEGER" />
+    <result column="OperateTime" property="operatetime" jdbcType="TIMESTAMP" />
+    <result column="OperatorId" property="operatorid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, FirstId, SecondId, Description, Key, Status, OperateTime, OperatorId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from relevance
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from relevance
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.permission.pojo.Relevance" >
+    insert into relevance (Id, FirstId, SecondId, 
+      Description, Key, Status, 
+      OperateTime, OperatorId)
+    values (#{id,jdbcType=INTEGER}, #{firstid,jdbcType=INTEGER}, #{secondid,jdbcType=INTEGER}, 
+      #{description,jdbcType=VARCHAR}, #{key,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{operatetime,jdbcType=TIMESTAMP}, #{operatorid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.permission.pojo.Relevance" >
+    insert into relevance
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="firstid != null" >
+        FirstId,
+      </if>
+      <if test="secondid != null" >
+        SecondId,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+      <if test="key != null" >
+        Key,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="operatetime != null" >
+        OperateTime,
+      </if>
+      <if test="operatorid != null" >
+        OperatorId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="firstid != null" >
+        #{firstid,jdbcType=INTEGER},
+      </if>
+      <if test="secondid != null" >
+        #{secondid,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null" >
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="operatetime != null" >
+        #{operatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorid != null" >
+        #{operatorid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.permission.pojo.Relevance" >
+    update relevance
+    <set >
+      <if test="firstid != null" >
+        FirstId = #{firstid,jdbcType=INTEGER},
+      </if>
+      <if test="secondid != null" >
+        SecondId = #{secondid,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null" >
+        Key = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        Status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="operatetime != null" >
+        OperateTime = #{operatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorid != null" >
+        OperatorId = #{operatorid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.permission.pojo.Relevance" >
+    update relevance
+    set FirstId = #{firstid,jdbcType=INTEGER},
+      SecondId = #{secondid,jdbcType=INTEGER},
+      Description = #{description,jdbcType=VARCHAR},
+      Key = #{key,jdbcType=VARCHAR},
+      Status = #{status,jdbcType=INTEGER},
+      OperateTime = #{operatetime,jdbcType=TIMESTAMP},
+      OperatorId = #{operatorid,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

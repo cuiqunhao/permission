@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.permission.dao.DicdetailMapper" >
+  <resultMap id="BaseResultMap" type="com.permission.pojo.Dicdetail" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Value" property="value" jdbcType="VARCHAR" />
+    <result column="Text" property="text" jdbcType="VARCHAR" />
+    <result column="DicId" property="dicid" jdbcType="INTEGER" />
+    <result column="SortNo" property="sortno" jdbcType="INTEGER" />
+    <result column="Status" property="status" jdbcType="INTEGER" />
+    <result column="Description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Value, Text, DicId, SortNo, Status, Description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dicdetail
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dicdetail
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.permission.pojo.Dicdetail" >
+    insert into dicdetail (Id, Value, Text, 
+      DicId, SortNo, Status, 
+      Description)
+    values (#{id,jdbcType=INTEGER}, #{value,jdbcType=VARCHAR}, #{text,jdbcType=VARCHAR}, 
+      #{dicid,jdbcType=INTEGER}, #{sortno,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.permission.pojo.Dicdetail" >
+    insert into dicdetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="value != null" >
+        Value,
+      </if>
+      <if test="text != null" >
+        Text,
+      </if>
+      <if test="dicid != null" >
+        DicId,
+      </if>
+      <if test="sortno != null" >
+        SortNo,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="text != null" >
+        #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="dicid != null" >
+        #{dicid,jdbcType=INTEGER},
+      </if>
+      <if test="sortno != null" >
+        #{sortno,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.permission.pojo.Dicdetail" >
+    update dicdetail
+    <set >
+      <if test="value != null" >
+        Value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="text != null" >
+        Text = #{text,jdbcType=VARCHAR},
+      </if>
+      <if test="dicid != null" >
+        DicId = #{dicid,jdbcType=INTEGER},
+      </if>
+      <if test="sortno != null" >
+        SortNo = #{sortno,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        Status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.permission.pojo.Dicdetail" >
+    update dicdetail
+    set Value = #{value,jdbcType=VARCHAR},
+      Text = #{text,jdbcType=VARCHAR},
+      DicId = #{dicid,jdbcType=INTEGER},
+      SortNo = #{sortno,jdbcType=INTEGER},
+      Status = #{status,jdbcType=INTEGER},
+      Description = #{description,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

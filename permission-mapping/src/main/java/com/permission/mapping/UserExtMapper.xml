@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.permission.dao.UserExtMapper" >
+  <resultMap id="BaseResultMap" type="com.permission.pojo.UserExt" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Email" property="email" jdbcType="VARCHAR" />
+    <result column="Phone_" property="phone" jdbcType="VARCHAR" />
+    <result column="Mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="Zip" property="zip" jdbcType="VARCHAR" />
+    <result column="Birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="IdCard" property="idcard" jdbcType="VARCHAR" />
+    <result column="QQ" property="qq" jdbcType="VARCHAR" />
+    <result column="ByteArrayId" property="bytearrayid" jdbcType="INTEGER" />
+    <result column="Field1" property="field1" jdbcType="VARCHAR" />
+    <result column="Field2" property="field2" jdbcType="VARCHAR" />
+    <result column="Field3" property="field3" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.permission.pojo.UserExtWithBLOBs" extends="BaseResultMap" >
+    <result column="DynamicField" property="dynamicfield" jdbcType="LONGVARCHAR" />
+    <result column="Remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Email, Phone_, Mobile, Address, Zip, Birthday, IdCard, QQ, ByteArrayId, Field1, 
+    Field2, Field3
+  </sql>
+  <sql id="Blob_Column_List" >
+    DynamicField, Remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from userext
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from userext
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.permission.pojo.UserExtWithBLOBs" >
+    insert into userext (Id, Email, Phone_, 
+      Mobile, Address, Zip, 
+      Birthday, IdCard, QQ, 
+      ByteArrayId, Field1, Field2, 
+      Field3, DynamicField, Remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{zip,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, 
+      #{bytearrayid,jdbcType=INTEGER}, #{field1,jdbcType=VARCHAR}, #{field2,jdbcType=VARCHAR}, 
+      #{field3,jdbcType=VARCHAR}, #{dynamicfield,jdbcType=LONGVARCHAR}, #{remark,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.permission.pojo.UserExtWithBLOBs" >
+    insert into userext
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="email != null" >
+        Email,
+      </if>
+      <if test="phone != null" >
+        Phone_,
+      </if>
+      <if test="mobile != null" >
+        Mobile,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
+      <if test="zip != null" >
+        Zip,
+      </if>
+      <if test="birthday != null" >
+        Birthday,
+      </if>
+      <if test="idcard != null" >
+        IdCard,
+      </if>
+      <if test="qq != null" >
+        QQ,
+      </if>
+      <if test="bytearrayid != null" >
+        ByteArrayId,
+      </if>
+      <if test="field1 != null" >
+        Field1,
+      </if>
+      <if test="field2 != null" >
+        Field2,
+      </if>
+      <if test="field3 != null" >
+        Field3,
+      </if>
+      <if test="dynamicfield != null" >
+        DynamicField,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zip != null" >
+        #{zip,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="bytearrayid != null" >
+        #{bytearrayid,jdbcType=INTEGER},
+      </if>
+      <if test="field1 != null" >
+        #{field1,jdbcType=VARCHAR},
+      </if>
+      <if test="field2 != null" >
+        #{field2,jdbcType=VARCHAR},
+      </if>
+      <if test="field3 != null" >
+        #{field3,jdbcType=VARCHAR},
+      </if>
+      <if test="dynamicfield != null" >
+        #{dynamicfield,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.permission.pojo.UserExtWithBLOBs" >
+    update userext
+    <set >
+      <if test="email != null" >
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        Phone_ = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        Mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zip != null" >
+        Zip = #{zip,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        Birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        IdCard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        QQ = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="bytearrayid != null" >
+        ByteArrayId = #{bytearrayid,jdbcType=INTEGER},
+      </if>
+      <if test="field1 != null" >
+        Field1 = #{field1,jdbcType=VARCHAR},
+      </if>
+      <if test="field2 != null" >
+        Field2 = #{field2,jdbcType=VARCHAR},
+      </if>
+      <if test="field3 != null" >
+        Field3 = #{field3,jdbcType=VARCHAR},
+      </if>
+      <if test="dynamicfield != null" >
+        DynamicField = #{dynamicfield,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.permission.pojo.UserExtWithBLOBs" >
+    update userext
+    set Email = #{email,jdbcType=VARCHAR},
+      Phone_ = #{phone,jdbcType=VARCHAR},
+      Mobile = #{mobile,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
+      Zip = #{zip,jdbcType=VARCHAR},
+      Birthday = #{birthday,jdbcType=VARCHAR},
+      IdCard = #{idcard,jdbcType=VARCHAR},
+      QQ = #{qq,jdbcType=VARCHAR},
+      ByteArrayId = #{bytearrayid,jdbcType=INTEGER},
+      Field1 = #{field1,jdbcType=VARCHAR},
+      Field2 = #{field2,jdbcType=VARCHAR},
+      Field3 = #{field3,jdbcType=VARCHAR},
+      DynamicField = #{dynamicfield,jdbcType=LONGVARCHAR},
+      Remark = #{remark,jdbcType=LONGVARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.permission.pojo.UserExt" >
+    update userext
+    set Email = #{email,jdbcType=VARCHAR},
+      Phone_ = #{phone,jdbcType=VARCHAR},
+      Mobile = #{mobile,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
+      Zip = #{zip,jdbcType=VARCHAR},
+      Birthday = #{birthday,jdbcType=VARCHAR},
+      IdCard = #{idcard,jdbcType=VARCHAR},
+      QQ = #{qq,jdbcType=VARCHAR},
+      ByteArrayId = #{bytearrayid,jdbcType=INTEGER},
+      Field1 = #{field1,jdbcType=VARCHAR},
+      Field2 = #{field2,jdbcType=VARCHAR},
+      Field3 = #{field3,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

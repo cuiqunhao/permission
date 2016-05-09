@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.permission.dao.ResourceMapper" >
+  <resultMap id="BaseResultMap" type="com.permission.pojo.Resource" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="CascadeId" property="cascadeid" jdbcType="VARCHAR" />
+    <result column="Key" property="key" jdbcType="VARCHAR" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="ParentId" property="parentid" jdbcType="INTEGER" />
+    <result column="Status" property="status" jdbcType="INTEGER" />
+    <result column="SortNo" property="sortno" jdbcType="INTEGER" />
+    <result column="CategoryId" property="categoryid" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.permission.pojo.Resource" extends="BaseResultMap" >
+    <result column="Description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, CascadeId, Key, Name, ParentId, Status, SortNo, CategoryId
+  </sql>
+  <sql id="Blob_Column_List" >
+    Description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from resource
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from resource
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.permission.pojo.Resource" >
+    insert into resource (Id, CascadeId, Key, 
+      Name, ParentId, Status, 
+      SortNo, CategoryId, Description
+      )
+    values (#{id,jdbcType=INTEGER}, #{cascadeid,jdbcType=VARCHAR}, #{key,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{sortno,jdbcType=INTEGER}, #{categoryid,jdbcType=INTEGER}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.permission.pojo.Resource" >
+    insert into resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="cascadeid != null" >
+        CascadeId,
+      </if>
+      <if test="key != null" >
+        Key,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="parentid != null" >
+        ParentId,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="sortno != null" >
+        SortNo,
+      </if>
+      <if test="categoryid != null" >
+        CategoryId,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cascadeid != null" >
+        #{cascadeid,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null" >
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sortno != null" >
+        #{sortno,jdbcType=INTEGER},
+      </if>
+      <if test="categoryid != null" >
+        #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.permission.pojo.Resource" >
+    update resource
+    <set >
+      <if test="cascadeid != null" >
+        CascadeId = #{cascadeid,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null" >
+        Key = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        ParentId = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        Status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sortno != null" >
+        SortNo = #{sortno,jdbcType=INTEGER},
+      </if>
+      <if test="categoryid != null" >
+        CategoryId = #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.permission.pojo.Resource" >
+    update resource
+    set CascadeId = #{cascadeid,jdbcType=VARCHAR},
+      Key = #{key,jdbcType=VARCHAR},
+      Name = #{name,jdbcType=VARCHAR},
+      ParentId = #{parentid,jdbcType=INTEGER},
+      Status = #{status,jdbcType=INTEGER},
+      SortNo = #{sortno,jdbcType=INTEGER},
+      CategoryId = #{categoryid,jdbcType=INTEGER},
+      Description = #{description,jdbcType=LONGVARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.permission.pojo.Resource" >
+    update resource
+    set CascadeId = #{cascadeid,jdbcType=VARCHAR},
+      Key = #{key,jdbcType=VARCHAR},
+      Name = #{name,jdbcType=VARCHAR},
+      ParentId = #{parentid,jdbcType=INTEGER},
+      Status = #{status,jdbcType=INTEGER},
+      SortNo = #{sortno,jdbcType=INTEGER},
+      CategoryId = #{categoryid,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

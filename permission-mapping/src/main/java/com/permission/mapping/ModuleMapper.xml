@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.permission.dao.ModuleMapper" >
+  <resultMap id="BaseResultMap" type="com.permission.pojo.Module" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="CascadeId" property="cascadeid" jdbcType="VARCHAR" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="Url" property="url" jdbcType="VARCHAR" />
+    <result column="HotKey" property="hotkey" jdbcType="VARCHAR" />
+    <result column="ParentId" property="parentid" jdbcType="INTEGER" />
+    <result column="IsLeaf" property="isleaf" jdbcType="BIT" />
+    <result column="IsAutoExpand" property="isautoexpand" jdbcType="BIT" />
+    <result column="IconName" property="iconname" jdbcType="VARCHAR" />
+    <result column="Status" property="status" jdbcType="INTEGER" />
+    <result column="ParentName" property="parentname" jdbcType="VARCHAR" />
+    <result column="Vector" property="vector" jdbcType="VARCHAR" />
+    <result column="SortNo" property="sortno" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, CascadeId, Name, Url, HotKey, ParentId, IsLeaf, IsAutoExpand, IconName, Status, 
+    ParentName, Vector, SortNo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from module
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from module
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.permission.pojo.Module" >
+    insert into module (Id, CascadeId, Name, 
+      Url, HotKey, ParentId, 
+      IsLeaf, IsAutoExpand, IconName, 
+      Status, ParentName, Vector, 
+      SortNo)
+    values (#{id,jdbcType=INTEGER}, #{cascadeid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{hotkey,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, 
+      #{isleaf,jdbcType=BIT}, #{isautoexpand,jdbcType=BIT}, #{iconname,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{parentname,jdbcType=VARCHAR}, #{vector,jdbcType=VARCHAR}, 
+      #{sortno,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.permission.pojo.Module" >
+    insert into module
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="cascadeid != null" >
+        CascadeId,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="url != null" >
+        Url,
+      </if>
+      <if test="hotkey != null" >
+        HotKey,
+      </if>
+      <if test="parentid != null" >
+        ParentId,
+      </if>
+      <if test="isleaf != null" >
+        IsLeaf,
+      </if>
+      <if test="isautoexpand != null" >
+        IsAutoExpand,
+      </if>
+      <if test="iconname != null" >
+        IconName,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="parentname != null" >
+        ParentName,
+      </if>
+      <if test="vector != null" >
+        Vector,
+      </if>
+      <if test="sortno != null" >
+        SortNo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cascadeid != null" >
+        #{cascadeid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="hotkey != null" >
+        #{hotkey,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="isleaf != null" >
+        #{isleaf,jdbcType=BIT},
+      </if>
+      <if test="isautoexpand != null" >
+        #{isautoexpand,jdbcType=BIT},
+      </if>
+      <if test="iconname != null" >
+        #{iconname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="parentname != null" >
+        #{parentname,jdbcType=VARCHAR},
+      </if>
+      <if test="vector != null" >
+        #{vector,jdbcType=VARCHAR},
+      </if>
+      <if test="sortno != null" >
+        #{sortno,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.permission.pojo.Module" >
+    update module
+    <set >
+      <if test="cascadeid != null" >
+        CascadeId = #{cascadeid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        Url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="hotkey != null" >
+        HotKey = #{hotkey,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        ParentId = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="isleaf != null" >
+        IsLeaf = #{isleaf,jdbcType=BIT},
+      </if>
+      <if test="isautoexpand != null" >
+        IsAutoExpand = #{isautoexpand,jdbcType=BIT},
+      </if>
+      <if test="iconname != null" >
+        IconName = #{iconname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        Status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="parentname != null" >
+        ParentName = #{parentname,jdbcType=VARCHAR},
+      </if>
+      <if test="vector != null" >
+        Vector = #{vector,jdbcType=VARCHAR},
+      </if>
+      <if test="sortno != null" >
+        SortNo = #{sortno,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.permission.pojo.Module" >
+    update module
+    set CascadeId = #{cascadeid,jdbcType=VARCHAR},
+      Name = #{name,jdbcType=VARCHAR},
+      Url = #{url,jdbcType=VARCHAR},
+      HotKey = #{hotkey,jdbcType=VARCHAR},
+      ParentId = #{parentid,jdbcType=INTEGER},
+      IsLeaf = #{isleaf,jdbcType=BIT},
+      IsAutoExpand = #{isautoexpand,jdbcType=BIT},
+      IconName = #{iconname,jdbcType=VARCHAR},
+      Status = #{status,jdbcType=INTEGER},
+      ParentName = #{parentname,jdbcType=VARCHAR},
+      Vector = #{vector,jdbcType=VARCHAR},
+      SortNo = #{sortno,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

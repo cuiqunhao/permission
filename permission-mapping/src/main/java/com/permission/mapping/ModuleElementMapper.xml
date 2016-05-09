@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.permission.dao.ModuleElementMapper" >
+  <resultMap id="BaseResultMap" type="com.permission.pojo.ModuleElement" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="DomId" property="domid" jdbcType="VARCHAR" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="Type" property="type" jdbcType="VARCHAR" />
+    <result column="ModuleId" property="moduleid" jdbcType="INTEGER" />
+    <result column="Icon" property="icon" jdbcType="VARCHAR" />
+    <result column="Class" property="class" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="Sort" property="sort" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.permission.pojo.ModuleElementWithBLOBs" extends="BaseResultMap" >
+    <result column="Attr" property="attr" jdbcType="LONGVARCHAR" />
+    <result column="Script" property="script" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, DomId, Name, Type, ModuleId, Icon, Class, Remark, Sort
+  </sql>
+  <sql id="Blob_Column_List" >
+    Attr, Script
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from moduleelement
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from moduleelement
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.permission.pojo.ModuleElementWithBLOBs" >
+    insert into moduleelement (Id, DomId, Name, 
+      Type, ModuleId, Icon, 
+      Class, Remark, Sort, 
+      Attr, Script)
+    values (#{id,jdbcType=INTEGER}, #{domid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{moduleid,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, 
+      #{class,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{attr,jdbcType=LONGVARCHAR}, #{script,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.permission.pojo.ModuleElementWithBLOBs" >
+    insert into moduleelement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="domid != null" >
+        DomId,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="type != null" >
+        Type,
+      </if>
+      <if test="moduleid != null" >
+        ModuleId,
+      </if>
+      <if test="icon != null" >
+        Icon,
+      </if>
+      <if test="class != null" >
+        Class,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="sort != null" >
+        Sort,
+      </if>
+      <if test="attr != null" >
+        Attr,
+      </if>
+      <if test="script != null" >
+        Script,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="domid != null" >
+        #{domid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleid != null" >
+        #{moduleid,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="class != null" >
+        #{class,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="attr != null" >
+        #{attr,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="script != null" >
+        #{script,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.permission.pojo.ModuleElementWithBLOBs" >
+    update moduleelement
+    <set >
+      <if test="domid != null" >
+        DomId = #{domid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        Type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleid != null" >
+        ModuleId = #{moduleid,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        Icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="class != null" >
+        Class = #{class,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        Sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="attr != null" >
+        Attr = #{attr,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="script != null" >
+        Script = #{script,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.permission.pojo.ModuleElementWithBLOBs" >
+    update moduleelement
+    set DomId = #{domid,jdbcType=VARCHAR},
+      Name = #{name,jdbcType=VARCHAR},
+      Type = #{type,jdbcType=VARCHAR},
+      ModuleId = #{moduleid,jdbcType=INTEGER},
+      Icon = #{icon,jdbcType=VARCHAR},
+      Class = #{class,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR},
+      Sort = #{sort,jdbcType=INTEGER},
+      Attr = #{attr,jdbcType=LONGVARCHAR},
+      Script = #{script,jdbcType=LONGVARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.permission.pojo.ModuleElement" >
+    update moduleelement
+    set DomId = #{domid,jdbcType=VARCHAR},
+      Name = #{name,jdbcType=VARCHAR},
+      Type = #{type,jdbcType=VARCHAR},
+      ModuleId = #{moduleid,jdbcType=INTEGER},
+      Icon = #{icon,jdbcType=VARCHAR},
+      Class = #{class,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR},
+      Sort = #{sort,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

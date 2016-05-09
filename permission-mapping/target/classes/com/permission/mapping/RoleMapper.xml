@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.permission.dao.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.permission.pojo.Role" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="Status" property="status" jdbcType="INTEGER" />
+    <result column="Type" property="type" jdbcType="INTEGER" />
+    <result column="CreateTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="CreateId" property="createid" jdbcType="VARCHAR" />
+    <result column="OrgId" property="orgid" jdbcType="INTEGER" />
+    <result column="OrgCascadeId" property="orgcascadeid" jdbcType="VARCHAR" />
+    <result column="OrgName" property="orgname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Name, Status, Type, CreateTime, CreateId, OrgId, OrgCascadeId, OrgName
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from role
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.permission.pojo.Role" >
+    insert into role (Id, Name, Status, 
+      Type, CreateTime, CreateId, 
+      OrgId, OrgCascadeId, OrgName
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{createid,jdbcType=VARCHAR}, 
+      #{orgid,jdbcType=INTEGER}, #{orgcascadeid,jdbcType=VARCHAR}, #{orgname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.permission.pojo.Role" >
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="type != null" >
+        Type,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="createid != null" >
+        CreateId,
+      </if>
+      <if test="orgid != null" >
+        OrgId,
+      </if>
+      <if test="orgcascadeid != null" >
+        OrgCascadeId,
+      </if>
+      <if test="orgname != null" >
+        OrgName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createid != null" >
+        #{createid,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        #{orgid,jdbcType=INTEGER},
+      </if>
+      <if test="orgcascadeid != null" >
+        #{orgcascadeid,jdbcType=VARCHAR},
+      </if>
+      <if test="orgname != null" >
+        #{orgname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.permission.pojo.Role" >
+    update role
+    <set >
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        Status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        Type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createid != null" >
+        CreateId = #{createid,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null" >
+        OrgId = #{orgid,jdbcType=INTEGER},
+      </if>
+      <if test="orgcascadeid != null" >
+        OrgCascadeId = #{orgcascadeid,jdbcType=VARCHAR},
+      </if>
+      <if test="orgname != null" >
+        OrgName = #{orgname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.permission.pojo.Role" >
+    update role
+    set Name = #{name,jdbcType=VARCHAR},
+      Status = #{status,jdbcType=INTEGER},
+      Type = #{type,jdbcType=INTEGER},
+      CreateTime = #{createtime,jdbcType=TIMESTAMP},
+      CreateId = #{createid,jdbcType=VARCHAR},
+      OrgId = #{orgid,jdbcType=INTEGER},
+      OrgCascadeId = #{orgcascadeid,jdbcType=VARCHAR},
+      OrgName = #{orgname,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

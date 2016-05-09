@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.permission.dao.DicindexMapper" >
+  <resultMap id="BaseResultMap" type="com.permission.pojo.Dicindex" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="Key" property="key" jdbcType="VARCHAR" />
+    <result column="SortNo" property="sortno" jdbcType="INTEGER" />
+    <result column="CategoryId" property="categoryid" jdbcType="INTEGER" />
+    <result column="Description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Name, Key, SortNo, CategoryId, Description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dicindex
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dicindex
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.permission.pojo.Dicindex" >
+    insert into dicindex (Id, Name, Key, 
+      SortNo, CategoryId, Description
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{key,jdbcType=VARCHAR}, 
+      #{sortno,jdbcType=INTEGER}, #{categoryid,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.permission.pojo.Dicindex" >
+    insert into dicindex
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="key != null" >
+        Key,
+      </if>
+      <if test="sortno != null" >
+        SortNo,
+      </if>
+      <if test="categoryid != null" >
+        CategoryId,
+      </if>
+      <if test="description != null" >
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null" >
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="sortno != null" >
+        #{sortno,jdbcType=INTEGER},
+      </if>
+      <if test="categoryid != null" >
+        #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.permission.pojo.Dicindex" >
+    update dicindex
+    <set >
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null" >
+        Key = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="sortno != null" >
+        SortNo = #{sortno,jdbcType=INTEGER},
+      </if>
+      <if test="categoryid != null" >
+        CategoryId = #{categoryid,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        Description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.permission.pojo.Dicindex" >
+    update dicindex
+    set Name = #{name,jdbcType=VARCHAR},
+      Key = #{key,jdbcType=VARCHAR},
+      SortNo = #{sortno,jdbcType=INTEGER},
+      CategoryId = #{categoryid,jdbcType=INTEGER},
+      Description = #{description,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
