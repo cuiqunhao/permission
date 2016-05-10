@@ -20,6 +20,16 @@
     from relevance
     where Id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <select id="deleteByKeyAndFirstIds" resultMap="BaseResultMap" >
+    delete from relevance
+    where key = #{key} and FirstId in
+     <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+       #{item}
+     </foreach>
+    order by Id
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from relevance
     where Id = #{id,jdbcType=INTEGER}

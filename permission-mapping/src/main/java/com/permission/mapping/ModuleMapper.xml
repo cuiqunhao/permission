@@ -26,6 +26,27 @@
     from module
     where Id = #{id,jdbcType=INTEGER}
   </select>
+  
+    
+   <select id="LoadModules" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from module 
+    order by Id
+  </select>
+  
+  <select id="LoadInOrgs" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM module
+    WHERE 
+    ParentId IN 
+   <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+       #{item}
+   </foreach>
+    order by Id
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from module
     where Id = #{id,jdbcType=INTEGER}

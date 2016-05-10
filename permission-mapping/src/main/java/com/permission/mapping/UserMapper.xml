@@ -30,13 +30,24 @@
     order by Id
   </select>
   
-  <select id="LoadInOrgs" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from user
+  <select id="LoadInOrgs" resultMap="BaseResultMap">
+   SELECT 
+   <include refid="Base_Column_List" />
+   FROM user
+    WHERE EXISTS(
+	    SELECT NULL AS EMPTY
+	    FROM (
+	        SELECT DISTINCT FirstId
+	        FROM relevance WHERE `Key`='UserOrg' and SecondId IN 
+	        <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+             #{item}
+            </foreach>
+	        ) AS t2
+	    WHERE t2.FirstId = Id
+	)
     order by Id
   </select>
-  
+   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
     where Id = #{id,jdbcType=INTEGER}

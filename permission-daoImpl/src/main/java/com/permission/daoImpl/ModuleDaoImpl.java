@@ -9,51 +9,56 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Repository;
 
 import com.permission.common.orm.PageInfo;
-import com.permission.dao.IUserDao;
-import com.permission.mapping.UserMapper;
-import com.permission.pojo.User;
+import com.permission.dao.IModuleDao;
+import com.permission.mapping.ModuleMapper;
+import com.permission.pojo.Module;
 
 @Repository
-public class UserDaoImpl implements IUserDao {
+public class ModuleDaoImpl implements IModuleDao {
 
 	@Resource
-	private UserMapper _userMapper;
+	private ModuleMapper _moduleMapper;
 	
-	public Map<String, Object> LoadUsers(Integer pageindex, Integer pagesize) {
+	public Map<String, Object> LoadModules(Integer pageindex, Integer pagesize) {
 		// TODO Auto-generated method stub
-		 int currentPage = pageindex;
-	     int pageSize = 3;
-	     if (currentPage<=0){
+		int currentPage = pageindex;
+	    int pageSize = 3;
+	    if (currentPage<=0){
 	         currentPage =1;
 	     }
 	    int currentResult = (currentPage-1) * pageSize;	               
 	    PageInfo page = new PageInfo();
 	    page.setShowCount(pageSize);
 	    page.setCurrentResult(currentResult);
-	    List<User> users= _userMapper.LoadUsers(page);
+	    List<Module> users= _moduleMapper.LoadModules(page);
 	    Map<String, Object> map=new HashMap<String, Object>();
 	    map.put("rows", users);
 	    map.put("total ",page.getTotalResult());
-		return map;	
+		return map;
 	}
-	
-	
-	public Map<String, Object> LoadInOrgs(int pageindex, int pagesize, Integer... orgIds) {
+
+	public Map<String, Object> LoadInOrgs(int pageindex, int pagesize,
+			Integer... orgIds) {
 		// TODO Auto-generated method stub
-		 int currentPage = pageindex;
-	     int pageSize = 3;
-	     if (currentPage<=0){
+		int currentPage = pageindex;
+	    int pageSize = 3;
+	    if (currentPage<=0){
 	         currentPage =1;
 	     }
 	    int currentResult = (currentPage-1) * pageSize;	               
 	    PageInfo page = new PageInfo();
 	    page.setShowCount(pageSize);
-	    page.setCurrentResult(currentResult);	    
-	    List<User> users= _userMapper.LoadInOrgs(page,orgIds);
+	    page.setCurrentResult(currentResult);
+	    List<Module> users= _moduleMapper.LoadInOrgs(page,orgIds);
 	    Map<String, Object> map=new HashMap<String, Object>();
 	    map.put("rows", users);
 	    map.put("total ",page.getTotalResult());
 		return map;
+	}
+
+	public void Delete(int id) {
+		// TODO Auto-generated method stub
+		_moduleMapper.deleteByPrimaryKey(id);
 	}
 
 }

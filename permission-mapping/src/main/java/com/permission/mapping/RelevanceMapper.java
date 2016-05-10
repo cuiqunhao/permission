@@ -1,5 +1,7 @@
 package com.permission.mapping;
 
+import java.util.Map;
+
 import com.permission.pojo.Relevance;
 
 public interface RelevanceMapper {
@@ -14,4 +16,6 @@ public interface RelevanceMapper {
     int updateByPrimaryKeySelective(Relevance record);
 
     int updateByPrimaryKey(Relevance record);
+    
+    void deleteByKeyAndFirstIds(Map<String, Object> params);
 }
