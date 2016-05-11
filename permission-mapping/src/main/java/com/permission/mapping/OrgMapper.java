@@ -1,5 +1,8 @@
 package com.permission.mapping;
 
+import java.util.List;
+import java.util.Map;
+
 import com.permission.pojo.Org;
 
 public interface OrgMapper {
@@ -10,6 +13,12 @@ public interface OrgMapper {
     int insertSelective(Org record);
 
     Org selectByPrimaryKey(Integer id);
+    
+    List<Org> LoadOrgs();
+    
+    List<Org> LoadByUser(Integer userId);
+    
+    List<Org> GetSubOrgs(Map<String,Object> map);
 
     int updateByPrimaryKeySelective(Org record);
 

@@ -21,6 +21,7 @@
   <resultMap id="ResultMapWithBLOBs" type="com.permission.pojo.Org" extends="BaseResultMap" >
     <result column="CustomCode" property="customcode" jdbcType="LONGVARCHAR" />
   </resultMap>
+  
   <sql id="Base_Column_List" >
     Id, CascadeId, Name, HotKey, ParentId, ParentName, IsLeaf, IsAutoExpand, IconName, 
     Status, Type, BizCode, CreateTime, CreateId, SortNo
@@ -28,6 +29,7 @@
   <sql id="Blob_Column_List" >
     CustomCode
   </sql>
+  
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -36,6 +38,31 @@
     from org
     where Id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <select id="LoadOrgs" resultMap="ResultMapWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from org
+  </select>
+  
+  <select id="LoadByUser" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+    SELECT t1.*
+	FROM Relevance AS t0
+	INNER JOIN Org AS t1 ON t0.SecondId = t1.Id
+	WHERE (t0.FirstId = #{id,jdbcType=userId }) AND ('t1.Key' = '')
+  </select>
+  
+  <select id="GetSubOrgs" resultMap="ResultMapWithBLOBs">
+    SELECT 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    FROM Org 
+	WHERE (CascadeId  LIKE CONCAT('%',#{cascadeId,jdbcType=VARCHAR},'%')  ) AND (Id <> #{orgId,jdbcType=INTEGER})
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from org
     where Id = #{id,jdbcType=INTEGER}
